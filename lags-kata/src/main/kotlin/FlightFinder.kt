@@ -5,5 +5,6 @@ fun calculatePrice(combination: List<Flight>): Int {
 }
 
 fun  findFollowUpFlights(startFlight: Flight, possibleFlights: List<Flight>): List<Flight> {
-    return listOf(Flight("BA01", 6,9,8))
+    val earliestPossibleStartTime: Int = startFlight.start + startFlight.duration
+    return possibleFlights.filter { it.start >= earliestPossibleStartTime }
 }
