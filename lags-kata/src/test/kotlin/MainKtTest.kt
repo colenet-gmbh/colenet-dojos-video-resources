@@ -32,10 +32,6 @@ internal class MainKtTest {
         assertThat(calculatePrice(combination)).isEqualTo(643)
     }
 
-    private fun  findFollowUpFlights(startFlight: Flight, possibleFlights: List<Flight>): List<Flight> {
-        return listOf(Flight("BA01", 6,9,8))
-    }
-
     @Test
     internal fun findFollowUpFlights_should_return_list_of_follow_up_flights() {
         val startFlight = Flight("B", 0,6,643)
@@ -43,8 +39,24 @@ internal class MainKtTest {
                 Flight("AF514", 0,5,10),
                 Flight("BA01", 6,9,8)
         )
+        val followUpFlights = findFollowUpFlights(startFlight, possibleFlights)
+
         val expected = listOf(Flight("BA01", 6,9,8))
-        assertThat(findFollowUpFlights(startFlight, possibleFlights)).containsExactlyElementsOf(expected);
+        assertThat(followUpFlights).containsExactlyElementsOf(expected);
+    }
+
+    @Test
+    internal fun findFollowUpFlights_should_return_list_of_two_follow_up_flights() {
+        val startFlight = Flight("B", 0,6,643)
+        val possibleFlights = listOf(
+            Flight("AF514", 0,5,10),
+            Flight("BA01", 6,9,8),
+            Flight("BA05", 15,1,1),
+        )
+        val followUpFlights = findFollowUpFlights(startFlight, possibleFlights)
+
+        val expected = listOf(Flight("BA01", 6,9,8),  Flight("BA05", 15,1,1))
+        assertThat(followUpFlights).containsExactlyElementsOf(expected);
     }
 
 
