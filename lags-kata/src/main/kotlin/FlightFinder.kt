@@ -6,6 +6,8 @@ fun calculatePrice(combination: List<Flight>): Int {
 
 fun findFollowUpFlights(startFlight: Flight, possibleFlights: List<Flight>): List<Flight> {
     val earliestPossibleStartTime: Int = startFlight.start + startFlight.duration
+    // IN: AF514 CO5 AF515 BA01
+    // Removes CO5, keeps AF515, BA01
     return possibleFlights.filter { it.start >= earliestPossibleStartTime }
 }
 
