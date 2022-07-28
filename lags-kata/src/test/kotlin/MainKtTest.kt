@@ -1,11 +1,6 @@
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-data class Flight( val id: String, val start: Int, val duration: Int, val price: Int )
-
-private fun calculatePrice(combination: List<Flight>): Int {
-    return combination.sumOf { it.price }
-}
 
 internal class MainKtTest {
 
@@ -19,10 +14,39 @@ internal class MainKtTest {
     @Test
     internal fun should_return_total_price_of_given_combination() {
         val combination = listOf(
-            Flight("AF514", 0,5,10),
-            Flight("BA01", 6,9,8)
+                Flight("AF514", 0,5,10),
+                Flight("BA01", 6,9,8)
         )
         assertThat(calculatePrice(combination)).isEqualTo(18);
     }
+
+    @Test
+    internal fun should_return_zero_for_empty_list() {
+        val combination = listOf<Flight>()
+        assertThat(calculatePrice(combination)).isZero()
+    }
+
+    @Test
+    internal fun should_return_price_of_single_entry_for_one_element_list() {
+        val combination = listOf(Flight("B", 6,9,643))
+        assertThat(calculatePrice(combination)).isEqualTo(643)
+    }
+
+    private fun  findFollowUpFlights(startFlight: Flight, possibleFlights: List<Flight>): List<Flight> {
+        return listOf(Flight("BA01", 6,9,8))
+    }
+
+    @Test
+    internal fun findFollowUpFlights_should_return_list_of_follow_up_flights() {
+        val startFlight = Flight("B", 0,6,643)
+        val possibleFlights = listOf(
+                Flight("AF514", 0,5,10),
+                Flight("BA01", 6,9,8)
+        )
+        val expected = listOf(Flight("BA01", 6,9,8))
+        assertThat(findFollowUpFlights(startFlight, possibleFlights)).containsExactlyElementsOf(expected);
+    }
+
+
 
 }
