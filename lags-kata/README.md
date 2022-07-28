@@ -6,11 +6,11 @@ This kata seems simple at first a glance, but wait to explore it before said it'
 
 ## Problem Description
 
-`ABEAS Corp` is a little company with only one plane. `ABEAS Corp's` customers ask for this plane to help them
-sometimes.
-They send rent request with start time, travel duration, and a price they will pay.
-
-You could help `ABEAS Corp` by finding the best request combination to maximize gain.
+`ABEAS Corp` is a little company with only one plane. `ABEAS Corp's` customers
+ask for this plane to help them sometimes.
+They send rent request with start time, travel duration, and a price they will 
+pay. You could help `ABEAS Corp` by finding the best request combination to
+maximize gain.
 
 ## Sample Test Cases
 
