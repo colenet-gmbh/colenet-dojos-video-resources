@@ -1,5 +1,7 @@
 # Lags
 
+**TODO: Add minimum requirements and short snipped on how to execute / test**
+
 ## About this Kata
 
 This kata seems simple at first a glance, but wait to explore it before said it's an easy one.
@@ -34,6 +36,6 @@ BA01 6 9 8
 | AF515  | 5             | 9          | 7     |
 | BA01   | 6             | 9          | 8     |
 
-The best combination here is AF514 and BA01 with a gain of 10+8=18.
+The best combination here is `AF514` and `BA01` with a gain of `10 + 8 = 18`.
 
-Depending on how you want to turn this Kata, the output could be 18
+Depending on how you want to turn this Kata, the output could be `18`
