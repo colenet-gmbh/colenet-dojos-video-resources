@@ -62,23 +62,99 @@ internal class MainKtTest {
 
     @Test
     internal fun `find valid combinations of flights`() {
-        val startFlight = Flight("B", 0, 6, 643)
+        val flightA = Flight("A", 0, 1, 10)
+        val flightB = Flight("B", 2, 1, 10)
+
         val possibleFlights = listOf(
-            Flight("AF514", 0, 5, 10),
-            Flight("BA01", 6, 9, 8),
+            flightA,
+            flightB,
         )
 
+        val result: List<List<Flight>> = findCombinations(possibleFlights)
         val expected = listOf(
-            listOf(startFlight),
-            listOf(
-                Flight("B", 0, 6, 643),
-                Flight("BA01", 6, 9, 8)
-            )
+            listOf(flightA),
+            listOf(flightB),
+            listOf(flightA, flightB),
         )
-        val result:List<List<Flight>> = findCombinations(startFlight, possibleFlights)
-        assertThat(result).isEqualTo(expected)
-
+        assertThat(result).containsExactlyInAnyOrderElementsOf(expected)
     }
 
+    @Test
+    internal fun `find valid combinations of flights 2`() {
+        val flightA = Flight("A", 0, 1, 10)
+        val flightB = Flight("B", 0, 1, 10)
+
+        val possibleFlights = listOf(
+            flightA,
+            flightB,
+        )
+
+        val result: List<List<Flight>> = findCombinations(possibleFlights)
+        val expected = listOf(
+            listOf(flightA),
+            listOf(flightB),
+        )
+        assertThat(result).containsExactlyInAnyOrderElementsOf(expected)
+    }
+
+    @Test
+    internal fun `find valid combinations of flights 3`() {
+        val flightA = Flight("A", 0, 1, 1)
+        val flightB = Flight("B", 0, 1, 2)
+        val flightC = Flight("C", 1, 1, 3)
+
+        val possibleFlights = listOf(
+            flightA,
+            flightB,
+            flightC
+        )
+
+        val result: List<List<Flight>> = findCombinations(possibleFlights)
+        val expected = listOf(
+            listOf(flightA),
+            listOf(flightB),
+            listOf(flightC),
+            listOf(flightA, flightC),
+            listOf(flightB, flightC)
+        )
+        assertThat(result).containsExactlyInAnyOrderElementsOf(expected)
+    }
+
+    @Test
+    internal fun `find most expensive combination`() {
+        val flightA = Flight("A", 0, 1, 1)
+        val flightB = Flight("B", 0, 1, 2)
+        val flightC = Flight("C", 1, 1, 3)
+
+        val combinations = listOf(
+            listOf(flightA),
+            listOf(flightB),
+            listOf(flightC),
+            listOf(flightA, flightC),
+            listOf(flightB, flightC)
+        )
+
+        val result: Pair<List<Flight>, Int> = bestCombination(combinations)
+        val expected = Pair(listOf(flightB, flightC), 5)
+        assertThat(result).isEqualTo(expected)
+    }
+
+    @Test
+    internal fun `acceptance test`() {
+        val flightAF514 = Flight("AF514", 0, 5, 10)
+        val flightCO5 = Flight("CO5", 3, 7, 14)
+        val flightAF515 = Flight("AF515", 5, 9, 7)
+        val flightBA01 = Flight("BA01", 6, 9, 8)
+
+        val flights = listOf(
+            flightAF514,
+            flightCO5,
+            flightAF515,
+            flightBA01,
+        )
+        val result:Pair<List<Flight>, Int> = findBestCombination(flights)
+        val expected =Pair(listOf(flightAF514, flightBA01), 18)
+        assertThat(result).isEqualTo(expected)
+    }
 
 }
